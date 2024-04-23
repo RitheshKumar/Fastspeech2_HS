@@ -1,3 +1,8 @@
+# This fork is for installing on Jetson Xavier - arm64 platform
+## Useful links
+1. https://forums.developer.nvidia.com/t/pytorch-for-jetson/72048
+2. https://catalog.ngc.nvidia.com/orgs/nvidia/containers/l4t-pytorch
+
 # Fastspeech2 Model using Hybrid Segmentation (HS)
 
 This repository contains a Fastspeech2 Model for 16 Indian languages (male and female both) implemented using the Hybrid Segmentation (HS) for speech synthesis. The model is capable of generating mel-spectrograms from text inputs and can be used to synthesize speech..
