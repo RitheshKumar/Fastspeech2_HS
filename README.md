@@ -2,10 +2,12 @@
 ## Useful links
 1. https://forums.developer.nvidia.com/t/pytorch-for-jetson/72048
 2. https://catalog.ngc.nvidia.com/orgs/nvidia/containers/l4t-pytorch
-3. https://docs.nvidia.com/deeplearning/frameworks/install-pytorch-jetson-platform/index.html
+3. https://docs.nvidia.com/deeplearning/frameworks/install-pytorch-jetson-platform/index.html --> Installing PyTorch for Jetson Platform
 4. https://forums.developer.nvidia.com/t/manually-installing-cuda-11-0-2-on-jetson-xavier-nx-help/191909/4 --> installing cuda toolkit manually
 5. https://repo.download.nvidia.com/jetson/
 6. https://docs.nvidia.com/cuda/cuda-for-tegra-appnote/index.html#upgradable-package-for-jetson --> cuda version
+7. https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#pre-installation-actions --> to verify if device is cuda compatible
+8. https://developer.nvidia.com/cuda-12-0-0-download-archive --> cuda toolkit download
 
 
 ## Notes
