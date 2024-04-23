@@ -2,6 +2,17 @@
 ## Useful links
 1. https://forums.developer.nvidia.com/t/pytorch-for-jetson/72048
 2. https://catalog.ngc.nvidia.com/orgs/nvidia/containers/l4t-pytorch
+3. https://docs.nvidia.com/deeplearning/frameworks/install-pytorch-jetson-platform/index.html
+4. https://forums.developer.nvidia.com/t/manually-installing-cuda-11-0-2-on-jetson-xavier-nx-help/191909/4 --> installing cuda toolkit manually
+5. https://repo.download.nvidia.com/jetson/
+6. https://docs.nvidia.com/cuda/cuda-for-tegra-appnote/index.html#upgradable-package-for-jetson --> cuda version
+
+
+## Notes
+- Install the wheel from nvidia jetson page for the appropriate Jetpack version using pip install
+- For these wheels we need Python 3.8 (you can activate a virtual environment to downgrade)
+- Kernel version 5.10.104-tegra
+- CUDA 12.0 is compatible with t186 (xavier agx) and jetpack 5.0.2
 
 # Fastspeech2 Model using Hybrid Segmentation (HS)
 
