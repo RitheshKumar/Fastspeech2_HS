@@ -16,6 +16,18 @@
 - Kernel version 5.10.104-tegra
 - CUDA 12.0 is compatible with t186 (xavier agx) and jetpack 5.0.2
 
+## Setup instructions (Jetpack 5.0.2)
+1. sudo apt-get update && sudo apt-get check
+2. If software updater prompts, update that as well
+3. install curl
+    1. sudo apt-get install libcurl4=7.68.0-1ubuntu2
+    2. sudo apt-get install curl
+4.Continue to clone the repo, install dependencies:
+
+### Installing Dependencies
+1. 
+
+
 # Fastspeech2 Model using Hybrid Segmentation (HS)
 
 This repository contains a Fastspeech2 Model for 16 Indian languages (male and female both) implemented using the Hybrid Segmentation (HS) for speech synthesis. The model is capable of generating mel-spectrograms from text inputs and can be used to synthesize speech..
