@@ -5,7 +5,7 @@
 3. https://docs.nvidia.com/deeplearning/frameworks/install-pytorch-jetson-platform/index.html --> Installing PyTorch for Jetson Platform
 4. https://forums.developer.nvidia.com/t/manually-installing-cuda-11-0-2-on-jetson-xavier-nx-help/191909/4 --> installing cuda toolkit manually
 5. https://repo.download.nvidia.com/jetson/
-6. https://docs.nvidia.com/cuda/cuda-for-tegra-appnote/index.html#upgradable-package-for-jetson --> cuda version
+6. https://docs.nvidia.com/cuda/cuda-for-tegra-appnote/index.html#upgradable-package-for-jetson --> cuda compatible version
 7. https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#pre-installation-actions --> to verify if device is cuda compatible
 8. https://developer.nvidia.com/cuda-12-0-0-download-archive --> cuda toolkit download
 
@@ -22,10 +22,24 @@
 3. install curl
     1. sudo apt-get install libcurl4=7.68.0-1ubuntu2
     2. sudo apt-get install curl
-4.Continue to clone the repo, install dependencies:
+4. Continue to clone the repo, lfs has some errror, but all the files seem to be there.
+5. install dependencies:
+
+### Downgrading Python to 3.8 to install PyTorch for Jetpack 5.0.5
+```
+sudo apt-get install python3.8-dev python3.8-venv
+```
+```
+cd
+mkdir virtual_env
+/usr/bin/python3.8 -m venv ~/virtual_env/venv_with_python3.8
+source ~/virtual_env/venv_with_python3.8/bin/activate
+python --version
+```
 
 ### Installing Dependencies
-1. 
+1. Conda (latest) get the aarch64(arm) version [py312_24.3.0-0]
+2. 
 
 
 # Fastspeech2 Model using Hybrid Segmentation (HS)
