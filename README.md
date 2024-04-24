@@ -22,8 +22,8 @@
 3. install curl
     1. sudo apt-get install libcurl4=7.68.0-1ubuntu2
     2. sudo apt-get install curl
-4. Continue to clone the repo, lfs has some errror, but all the files seem to be there.
-5. install dependencies:
+5. Continue to clone the repo, lfs has some error, but all the files seem to be there.
+6. install dependencies:
 
 ### Downgrading Python to 3.8 to install PyTorch for Jetpack 5.0.5
 ```
@@ -38,8 +38,27 @@ python --version
 ```
 
 ### Installing Dependencies
-1. Conda (latest) get the aarch64(arm) version [py312_24.3.0-0]
-2. 
+1. Conda (latest) get the aarch64(arm) version [py312_24.3.0-0] https://docs.anaconda.com/free/miniconda/
+2. Install pytorch
+    1. wget https://developer.download.nvidia.com/compute/redist/jp/v502/pytorch/torch-1.13.0a0+410ce96a.nv22.12-cp38-cp38-linux_aarch64.whl
+    2. Activate python 3.8
+```
+export TORCH_INSTALL=./torch-1.13.0a0+410ce96a.nv22.12-cp38-cp38-linux_aarch64.whl
+python3 -m pip install --upgrade pip
+pip install numpy==1.21.6
+pip install --no-cache $TORCH_INSTALL
+```
+3. Install CUDA Toolkit
+```
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/arm64/cuda-ubuntu2004.pinsudo
+mv cuda-ubuntu2004.pin /etc/apt/preferences.d/cuda-repository-pin-600
+wget https://developer.download.nvidia.com/compute/cuda/12.0.0/local_installers/cuda-tegra-repo-ubuntu2004-12-0-local_12.0.0-1_arm64.deb
+sudo dpkg -i cuda-tegra-repo-ubuntu2004-12-0-local_12.0.0-1_arm64.deb
+sudo cp /var/cuda-tegra-repo-ubuntu2004-12-0-local/cuda-*-keyring.gpg /usr/share/keyrings/sudo apt-get update
+sudo apt-get -y install cuda
+```
+4. pip install torchaudio
+
 
 
 # Fastspeech2 Model using Hybrid Segmentation (HS)
