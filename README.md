@@ -9,6 +9,21 @@
 7. https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#pre-installation-actions --> to verify if device is cuda compatible
 8. https://developer.nvidia.com/cuda-12-0-0-download-archive --> cuda toolkit download
 
+## Version Map [These are interdependent on version]
+1. OS: Ubuntu 20.04.6 LTS (Focal Fossa)
+2. Kernel: 5.10.104-tegra
+3. Architecture: aarch64 (arm)
+4. Jetpack 5.0.2 (rev2)
+5. Conda 24.3.0 aarch64
+6. Curl 7.68.0
+7. Python 3.8.10
+8. numpy 1.21.6
+9. Pytorch 2.2.2, Supposed to be 1.13 [torch-1.13.0a0+410ce96a.nv22.12-cp38-cp38-linux_aarch64.whl]
+10. torchAudio 2.2.2
+11. CUDA 12.0.0
+
+
+
 
 ## Notes
 - Install the wheel from nvidia jetson page for the appropriate Jetpack version using pip install
