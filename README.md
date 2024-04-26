@@ -73,6 +73,17 @@ sudo cp /var/cuda-tegra-repo-ubuntu2004-12-0-local/cuda-*-keyring.gpg /usr/share
 sudo apt-get -y install cuda
 ```
 4. pip install torchaudio
+5. Also install libhdf5-dev [make sure the dev version is installed]
+6. For having conda in custom location:
+```
+conda create --prefix /work/mydir/mypath
+
+Package cache directory: $HOME/.conda/pkgs [default]
+You can add pkgs_dir $HOME/.condarc
+OR set CONDA_PKGS_DIRS environment variable
+```
+7. conda list --> gives the list of libraries and their versions
+8. [MAYBE] typeguard==2.13.3
 
 
 
