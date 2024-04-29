@@ -8,6 +8,10 @@
 6. https://docs.nvidia.com/cuda/cuda-for-tegra-appnote/index.html#upgradable-package-for-jetson --> cuda compatible version
 7. https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#pre-installation-actions --> to verify if device is cuda compatible
 8. https://developer.nvidia.com/cuda-12-0-0-download-archive --> cuda toolkit download
+9. https://forums.developer.nvidia.com/t/having-problems-updating-cmake-on-xavier-nx/169265 --> install cmake
+10. https://onnxruntime.ai/docs/build/eps.html#nvidia-jetson-tx1tx2nanoxavier --> Install onnxruntime for Jetson Devices
+11. https://elinux.org/Jetson_Zoo#ONNX_Runtime --> install this for onnxruntime for python 3.8 --> this is the pytorch we have
+12. https://onnxruntime.ai/docs/execution-providers/CUDA-ExecutionProvider.html --> CUDA EP install/usage
 
 ## Version Map [These are interdependent on version]
 1. OS: Ubuntu 20.04.6 LTS (Focal Fossa)
@@ -40,7 +44,7 @@
 5. Continue to clone the repo, lfs has some error, but all the files seem to be there.
 6. install dependencies:
 
-### Downgrading Python to 3.8 to install PyTorch for Jetpack 5.0.5
+### Activating Python 3.8 to install PyTorch for Jetpack 5.0.5
 ```
 sudo apt-get install python3.8-dev python3.8-venv
 ```
@@ -84,6 +88,33 @@ OR set CONDA_PKGS_DIRS environment variable
 ```
 7. conda list --> gives the list of libraries and their versions
 8. [MAYBE] typeguard==2.13.3
+
+
+## Onnx Model Route
+1. cuda toolkit is installed [12.0]
+2. pytorch is installed
+3. install cmake 3.26 or greater [3.26.6]
+```
+tar -zxvf cmake-3.26.6-linux-aarch64.tar.gz
+cd cmake-3.26.6-linux-aarch64/
+sudo cp -rf bin/ doc/ share/ /usr/local/
+sudo cp -rf man/* /usr/local/man
+sync
+cmake --version 
+```
+4. Install onnxruntime for Jetson
+```
+git clone --recursive https://github.com/microsoft/onnxruntime
+export PATH="/usr/local/cuda/bin:${PATH}"
+export CUDACXX="/usr/local/cuda/bin/nvcc"
+sudo apt install -y --no-install-recommends build-essential software-properties-common libopenblas-dev libpython3.8-dev python3-pip python3-dev python3-setuptools python3-wheel
+./build.sh --config Release --update --build --parallel 2 --build_wheel --use_tensorrt --cuda_home /usr/local/cuda --cudnn_home /usr/lib/aarch64-linux-gnu --tensorrt_home /usr/lib/aarch64-linux-gnu
+```
+OR
+4. Install the onnxruntime wheel found in: https://elinux.org/Jetson_Zoo#ONNX_Runtime [python 3.8, Jetpack 5.0. onnxruntime 1.12.1]
+`pip install <downloaded-wheel>.whl`
+
+
 
 
 
