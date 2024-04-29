@@ -12,6 +12,7 @@
 10. https://onnxruntime.ai/docs/build/eps.html#nvidia-jetson-tx1tx2nanoxavier --> Install onnxruntime for Jetson Devices
 11. https://elinux.org/Jetson_Zoo#ONNX_Runtime --> install this for onnxruntime for python 3.8 --> this is the pytorch we have
 12. https://onnxruntime.ai/docs/execution-providers/CUDA-ExecutionProvider.html --> CUDA EP install/usage
+13. https://developer.nvidia.com/cudnn-downloads --> CuDNN library install
 
 ## Version Map [These are interdependent on version]
 1. OS: Ubuntu 20.04.6 LTS (Focal Fossa)
@@ -34,6 +35,7 @@
 - For these wheels we need Python 3.8 (you can activate a virtual environment to downgrade)
 - Kernel version 5.10.104-tegra
 - CUDA 12.0 is compatible with t186 (xavier agx) and jetpack 5.0.2
+- $LD_LIBRARY_PATH is where CUDA/python related library paths are found [need to validate this statement]
 
 ## Setup instructions (Jetpack 5.0.2)
 1. sudo apt-get update && sudo apt-get check
@@ -104,17 +106,25 @@ cmake --version
 ```
 4. Install onnxruntime for Jetson
 ```
-git clone --recursive https://github.com/microsoft/onnxruntime
+git clone --recursive -b rel-1.12.0 https://github.com/microsoft/onnxruntime
 export PATH="/usr/local/cuda/bin:${PATH}"
 export CUDACXX="/usr/local/cuda/bin/nvcc"
 sudo apt install -y --no-install-recommends build-essential software-properties-common libopenblas-dev libpython3.8-dev python3-pip python3-dev python3-setuptools python3-wheel
 ./build.sh --config Release --update --build --parallel 2 --build_wheel --use_tensorrt --cuda_home /usr/local/cuda --cudnn_home /usr/lib/aarch64-linux-gnu --tensorrt_home /usr/lib/aarch64-linux-gnu
+sudo pip install build/Linux/Release/dist/onnxruntime_gpu-1.12.0-cp38-cp38-linux_aarch64.whl
 ```
 OR
 4. Install the onnxruntime wheel found in: https://elinux.org/Jetson_Zoo#ONNX_Runtime [python 3.8, Jetpack 5.0. onnxruntime 1.12.1]
 `pip install <downloaded-wheel>.whl`
 
-
+5. Install CuDNN library
+```
+wget https://developer.download.nvidia.com/compute/cudnn/9.1.0/local_installers/cudnn-local-tegra-repo-ubuntu2004-9.1.0_1.0-1_arm64.deb
+sudo dpkg -i cudnn-local-tegra-repo-ubuntu2004-9.1.0_1.0-1_arm64.deb
+sudo cp /var/cudnn-local-tegra-repo-ubuntu2004-9.1.0/cudnn-*-keyring.gpg /usr/share/keyrings/
+sudo apt-get update
+sudo apt-get -y install cudnn-cuda-12
+```
 
 
 

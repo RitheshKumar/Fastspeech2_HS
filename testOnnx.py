@@ -10,7 +10,7 @@ ort_sess = ort.InferenceSession('/home/nvidia/Desktop/hifigan_mac.onnx',provider
 
 
 #Get mels and convert to a model readable format
-df = pd.read_csv("./Hindi_Mels_1")
+df = pd.read_csv("/home/nvidia/Desktop/Hindi_Mels_1")
 data= df.values
 
 tensor = torch.from_numpy(data)
@@ -42,5 +42,5 @@ data /= np.max(np.abs(data))
 # sd.wait()  # Wait until the audio is done playing
 
 # Save the audio data to a WAV file
-output_filename = './output_CUDA.wav' 
+output_filename = '/home/nvidia/Desktop/output_CUDA.wav' 
 sf.write(output_filename, data, sample_rate)
