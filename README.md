@@ -127,6 +127,36 @@ sudo apt-get -y install cudnn-cuda-12
 ```
 
 
+## Commands for Debugging Dependencies
+1. set include-system-site-packages key to true in pyvenv.cfg
+2. pip list --local
+3. PYTHONPATH variable lists where this environment's look up dirs
+4. ldd $(which python) —> lists the shared libraries used by python interpreter
+5. To include the share libs Set include-system-site-packages key to true in pyvenv.cfg
+6. Check sys.prefix != sys.base_prefix to ensure that paths are correct.
+7. Open venv/bin/activate: export PATH=$PATH:/my/custom/path; source venv/bin/activate; echo $PATH
+8. pip show <packagename> --> shows the install location
+9. python -m site --user-site --> shows where site-packages are looked up for the current environment
+10. Open python interpreter:
+```	
+  import site
+  print(site.getsitepackages())
+```
+11. dpkg -L <package-name> --> lists the already installed path
+12. dpkg-deb -c <package.deb> --> lists the paths about to be installed
+13. strace -o log.txt head --> gives a detailed trace of all the c calls in the kernel
+14. printenv
+15. tar -ztf <filename> --> to find the contents of a tarball
+16. ldd <appname> --> gives the list of shared libaries used by the app
+17. /etc/ld.so.cache --> is where an app looks up for available shared objects, to load from
+18. /etc/ld.so.conf points to /etc/ld.so.conf.d which has all the configurations for corresponding shared libraries.
+19. ldconfig -p | grep <library_name>
+20. apt search <library_name>
+21. readelf -d /bin/curl or readelf -d libshared.so
+22. readelf -d /path/to/executable | grep -E 'RPATH|RUNPATH'
+
+
+
 
 # Fastspeech2 Model using Hybrid Segmentation (HS)
 
