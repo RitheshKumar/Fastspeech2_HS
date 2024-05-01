@@ -13,6 +13,8 @@
 11. https://elinux.org/Jetson_Zoo#ONNX_Runtime --> install this for onnxruntime for python 3.8 --> this is the pytorch we have
 12. https://onnxruntime.ai/docs/execution-providers/CUDA-ExecutionProvider.html --> CUDA EP install/usage
 13. https://developer.nvidia.com/cudnn-downloads --> CuDNN library install
+14. https://onnxruntime.ai/docs/execution-providers/CUDA-ExecutionProvider.html --> to find the correct versions for onnxruntime + cuda + cudnn
+15. https://elenacliu-pytorch-cuda-driver.streamlit.app/ --> Checking version compatiblities
 
 ## Version Map [These are interdependent on version]
 1. OS: Ubuntu 20.04.6 LTS (Focal Fossa)
