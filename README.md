@@ -207,7 +207,7 @@ Edit /etc/fstab UUID=<find this out from lsblk> /usr/local/sdcard ext4 noauto,no
 
 ### Misc
 1. udevadm info /dev/mmcblk1p1 --> is a kernel level tool that polls for newly connected devices
-2. /etc/udev/rules.d/ is where UFS(sdcard) connection rules are specified. This takes precedence.
+2. /etc/udev/rules.d/ or /usr/local/sd or /usr/lib/udev/rules.d or /lib/udev/rules.d is where UFS(sdcard) connection rules are specified. This takes precedence over fstab
 
 
 # Fastspeech2 Model using Hybrid Segmentation (HS)
