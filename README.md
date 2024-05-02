@@ -164,17 +164,23 @@ make clean && make
 ./mnistCUDNN
 Test passed!
 ```
-6. install onnxruntime-gpu from  https://elinux.org/Jetson_Zoo#ONNX_Runtime
-```
-pip install <onnxruntime-gpu-file>.whl
-```
-7. Mount sd card on to /usr/local path. This is so we have enough space for everything.
+6. Mount sd card on to /usr/local path. This is so we have enough space for everything.
 ```
 lsblk (identify the sdcard partition path: let's assume /dev/mmcblk0p1 )
 sudo mkdir /usr/local/sd
 sudo mount /dev/mmcblk1p1 /usr/local/sd
 df -H -T /usr/local/sd --> to verify the mount
 Add an entry in /etc/fstab UUID=<find this out from sudo blkid> /usr/local/sd ext4 defaults,user,owner,nofail,exec 0 2
+```
+7. install onnxruntime-gpu from  https://elinux.org/Jetson_Zoo#ONNX_Runtime
+```
+pip install <onnxruntime-gpu-file>.whl
+```
+8. Install openblas(for pyTorch), pandas, soundfile
+```
+sudo apt install libopenblas-dev
+pip install pandas
+pip install soundfile
 ```
 
 ## Commands for Debugging Dependencies
@@ -211,7 +217,7 @@ Add an entry in /etc/fstab UUID=<find this out from sudo blkid> /usr/local/sd ex
 3. sudo chmod -R ugo+rw /usr/local/sd
 4. findmnt -o TARGET,VFS-OPTIONS,FS-OPTIONS --> provides the given mount options of your mounted locations
 5. The above command tells you if your mounted sd card has exec permissions. Shows as noexec if you don't. If there is exec permission, then nothing shows.So use the exec option in your fstab
-6.  
+6. modinfo nvidia --> Useful for firmware versions 
 
 
 # Fastspeech2 Model using Hybrid Segmentation (HS)
