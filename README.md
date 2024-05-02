@@ -151,7 +151,31 @@ make clean && make
 Test passed!
 ```
 
-6. 
+## Take 3
+1. Install Jetpack 5.0.2 using `sdkmanager --archived-versions`
+2. `sudo apt-get update && sudo apt-get check` on the device
+3. Ensure you install SDK components as well
+4. Validate Cuda using sample code at /usr/local/cuda/samples/1_Utilities
+5. Validate CuDNN using 
+```
+cp -r /usr/src/cudnn_samples_v8/ $HOME
+cd  $HOME/cudnn_samples_v8/mnistCUDNN
+make clean && make
+./mnistCUDNN
+Test passed!
+```
+6. install onnxruntime-gpu from  https://elinux.org/Jetson_Zoo#ONNX_Runtime
+```
+pip install <onnxruntime-gpu-file>.whl
+```
+7. Mount sd card on to /usr/local path. This is so we have enough space for everything.
+```
+lsblk (identify the sdcard partition path: let's assume /dev/mmcblk0p1 )
+sudo mkdir /usr/local/sd
+sudo mount /dev/mmcblk0p1 /usr/local/sd
+df -H -T /usr/local/sd --> to verify the mount
+Edit /etc/fstab UUID=<find this out from lsblk> /usr/local/sdcard ext4 noauto,nofail,rw,suid,dev,exec,nouser,async 1 2
+```
 
 ## Commands for Debugging Dependencies
 1. set include-system-site-packages key to true in pyvenv.cfg
