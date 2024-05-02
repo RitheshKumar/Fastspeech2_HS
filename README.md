@@ -10,11 +10,12 @@
 8. https://developer.nvidia.com/cuda-12-0-0-download-archive --> cuda toolkit download
 9. https://forums.developer.nvidia.com/t/having-problems-updating-cmake-on-xavier-nx/169265 --> install cmake
 10. https://onnxruntime.ai/docs/build/eps.html#nvidia-jetson-tx1tx2nanoxavier --> Install onnxruntime for Jetson Devices
-11. https://elinux.org/Jetson_Zoo#ONNX_Runtime --> install this for onnxruntime for python 3.8 --> this is the pytorch we have
+11. https://elinux.org/Jetson_Zoo#ONNX_Runtime --> install this for onnxruntime-gpu for python 3.8 --> this is the pytorch we have
 12. https://onnxruntime.ai/docs/execution-providers/CUDA-ExecutionProvider.html --> CUDA EP install/usage
 13. https://developer.nvidia.com/cudnn-downloads --> CuDNN library install
 14. https://onnxruntime.ai/docs/execution-providers/CUDA-ExecutionProvider.html --> to find the correct versions for onnxruntime + cuda + cudnn
 15. https://elenacliu-pytorch-cuda-driver.streamlit.app/ --> Checking version compatiblities
+16. https://docs.nvidia.com/deeplearning/cudnn/archives/cudnn-890/install-guide/index.html --> CuDNN installation
 
 ## Version Map [These are interdependent on version]
 1. OS: Ubuntu 20.04.6 LTS (Focal Fossa)
@@ -80,6 +81,7 @@ sudo dpkg -i cuda-tegra-repo-ubuntu2004-12-0-local_12.0.0-1_arm64.deb
 sudo cp /var/cuda-tegra-repo-ubuntu2004-12-0-local/cuda-*-keyring.gpg /usr/share/keyrings/sudo apt-get update
 sudo apt-get -y install cuda
 ```
+You can verify installation with `nvcc --version`
 4. pip install torchaudio
 5. Also install libhdf5-dev [make sure the dev version is installed]
 6. For having conda in custom location:
@@ -119,15 +121,37 @@ OR
 4. Install the onnxruntime wheel found in: https://elinux.org/Jetson_Zoo#ONNX_Runtime [python 3.8, Jetpack 5.0. onnxruntime 1.12.1]
 `pip install <downloaded-wheel>.whl`
 
-5. Install CuDNN library
+5. Install CuDNN library [version 8.5.0]
+Download 8.5.0, ubuntu 20.04, arm64sbsa package from NVidia CuDNN archive: cudnn-local-repo-ubuntu2004-8.5.0.96_1.0-1_arm64.deb
+(You may need to login to download)
+Direct link: https://developer.nvidia.com/compute/cudnn/secure/8.5.0/local_installers/11.7/cudnn-local-repo-ubuntu2004-8.5.0.96_1.0-1_arm64.deb
 ```
-wget https://developer.download.nvidia.com/compute/cudnn/9.1.0/local_installers/cudnn-local-tegra-repo-ubuntu2004-9.1.0_1.0-1_arm64.deb
-sudo dpkg -i cudnn-local-tegra-repo-ubuntu2004-9.1.0_1.0-1_arm64.deb
-sudo cp /var/cudnn-local-tegra-repo-ubuntu2004-9.1.0/cudnn-*-keyring.gpg /usr/share/keyrings/
+sudo dpkg -i cudnn-local-repo-ubuntu2004-8.5.0.96_1.0-1_arm64.deb 
+sudo cp /var/cudnn-local-repo-ubuntu2004-8.5.0.96/cudnn-local-0CCB36B3-keyring.gpg /usr/share/keyrings/
 sudo apt-get update
-sudo apt-get -y install cudnn-cuda-12
+sudo apt-get -y install libcudnn8
+sudo apt-get install libcudnn8-dev
+sudo apt-get install libcudnn8-samples
+sudo apt-get install zlib1g
+```
+Verify installation by searching for "libcudnn" in `/usr/lib/aarch64-linux-gnu`
+
+ALSO verify installation by:
+a. Install freeimage library
+```
+sudo apt-get update
+sudo apt-get install -y libfreeimage-dev
+```
+b. Now run their sample code
+```
+cp -r /usr/src/cudnn_samples_v8/ $HOME
+cd  $HOME/cudnn_samples_v8/mnistCUDNN
+make clean && make
+./mnistCUDNN
+Test passed!
 ```
 
+6. 
 
 ## Commands for Debugging Dependencies
 1. set include-system-site-packages key to true in pyvenv.cfg
