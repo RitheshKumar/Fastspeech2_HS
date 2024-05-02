@@ -174,7 +174,7 @@ lsblk (identify the sdcard partition path: let's assume /dev/mmcblk0p1 )
 sudo mkdir /usr/local/sd
 sudo mount /dev/mmcblk1p1 /usr/local/sd
 df -H -T /usr/local/sd --> to verify the mount
-Edit /etc/fstab UUID=<find this out from lsblk> /usr/local/sdcard ext4 noauto,nofail,rw,suid,dev,exec,nouser,async 1 2
+Add an entry in /etc/fstab UUID=<find this out from sudo blkid> /usr/local/sd ext4 defaults,user,owner,nofail,exec 0 2
 ```
 
 ## Commands for Debugging Dependencies
@@ -208,6 +208,10 @@ Edit /etc/fstab UUID=<find this out from lsblk> /usr/local/sdcard ext4 noauto,no
 ### Misc
 1. udevadm info /dev/mmcblk1p1 --> is a kernel level tool that polls for newly connected devices
 2. /etc/udev/rules.d/ or /usr/local/sd or /usr/lib/udev/rules.d or /lib/udev/rules.d is where UFS(sdcard) connection rules are specified. This takes precedence over fstab
+3. sudo chmod -R ugo+rw /usr/local/sd
+4. findmnt -o TARGET,VFS-OPTIONS,FS-OPTIONS --> provides the given mount options of your mounted locations
+5. The above command tells you if your mounted sd card has exec permissions. Shows as noexec if you don't. If there is exec permission, then nothing shows.So use the exec option in your fstab
+6.  
 
 
 # Fastspeech2 Model using Hybrid Segmentation (HS)
