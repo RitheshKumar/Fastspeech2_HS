@@ -172,7 +172,7 @@ pip install <onnxruntime-gpu-file>.whl
 ```
 lsblk (identify the sdcard partition path: let's assume /dev/mmcblk0p1 )
 sudo mkdir /usr/local/sd
-sudo mount /dev/mmcblk0p1 /usr/local/sd
+sudo mount /dev/mmcblk1p1 /usr/local/sd
 df -H -T /usr/local/sd --> to verify the mount
 Edit /etc/fstab UUID=<find this out from lsblk> /usr/local/sdcard ext4 noauto,nofail,rw,suid,dev,exec,nouser,async 1 2
 ```
@@ -205,7 +205,9 @@ Edit /etc/fstab UUID=<find this out from lsblk> /usr/local/sdcard ext4 noauto,no
 21. readelf -d /bin/curl or readelf -d libshared.so
 22. readelf -d /path/to/executable | grep -E 'RPATH|RUNPATH'
 
-
+### Misc
+1. udevadm info /dev/mmcblk1p1 --> is a kernel level tool that polls for newly connected devices
+2. /etc/udev/rules.d/ is where UFS(sdcard) connection rules are specified. This takes precedence.
 
 
 # Fastspeech2 Model using Hybrid Segmentation (HS)
