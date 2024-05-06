@@ -1,0 +1,18 @@
+
+name: tts-xavi
+channels:
+  - defaults
+dependencies:
+  - python=3.8
+  - pip
+#  - cudnn=8.4.1
+  - pip:
+    - torch==1.13.0a0+d0d6b1f2.nv22.10 #install the downloaded wheel first by activating py3.8 environment
+    - numpy==1.24.4
+    - espnet==202209 # sudo apt-get install libhdf5-dev for this
+    - espnet-tts-frontend==0.0.3
+#    - torchaudio
+#prefix: /speech/Apps/Flask_app_env/conda_dir/envs/tts-hs-jetsons
+#variables:
+#  PATH: "'$PATH:/usr/local/cuda/samples/1_Utilities/bandwidthTest'"
+#  LD_LIBRARY_PATH: "'$LD_LIBRARY_PATH:$CONDA_PREFIX/lib/:/lib/aarch64-linux-gnu/'"
