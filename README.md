@@ -211,6 +211,16 @@ pip install soundfile
 21. readelf -d /bin/curl or readelf -d libshared.so
 22. readelf -d /path/to/executable | grep -E 'RPATH|RUNPATH'
 
+## Take 4
+1. Now, cuda, cudnn, pytorch are already installed. Now we're creating a conda environment for fastspeech HS.
+2. Install conda in your sd card slot by
+```
+Get the latest script from: https://docs.anaconda.com/free/miniconda/
+sh ~/Downloads/Miniconda3-latest-Linux-aarch64.sh -p /home/nvidia/sd/miniConda
+export PATH="/home/nvidia/sd/miniConda/bin:$PATH"
+source ~/.bashrc
+```
+3. 
 ### Misc
 1. udevadm info /dev/mmcblk1p1 --> is a kernel level tool that polls for newly connected devices
 2. /etc/udev/rules.d/ or /usr/local/sd or /usr/lib/udev/rules.d or /lib/udev/rules.d is where UFS(sdcard) connection rules are specified. This takes precedence over fstab
