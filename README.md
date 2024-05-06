@@ -16,6 +16,8 @@
 14. https://onnxruntime.ai/docs/execution-providers/CUDA-ExecutionProvider.html --> to find the correct versions for onnxruntime + cuda + cudnn
 15. https://elenacliu-pytorch-cuda-driver.streamlit.app/ --> Checking version compatiblities
 16. https://docs.nvidia.com/deeplearning/cudnn/archives/cudnn-890/install-guide/index.html --> CuDNN installation
+17. https://pytorch.org/audio/main/build.linux.html --> how to build torchaudio from source
+18. https://github.com/pytorch/audio/issues/658 --> install command for torchaudio on Jetson
 
 ## Version Map [These are interdependent on version]
 1. OS: Ubuntu 20.04.6 LTS (Focal Fossa)
@@ -220,7 +222,28 @@ sh ~/Downloads/Miniconda3-latest-Linux-aarch64.sh -p /home/nvidia/sd/miniConda
 export PATH="/home/nvidia/sd/miniConda/bin:$PATH"
 source ~/.bashrc
 ```
-3. 
+3. Create your conda environment with just python=3.8 & pip
+4. Now install torch
+```
+# [Jetpack 5.0.2, Python 3.8, Torch 1.13.0]
+wget https://developer.download.nvidia.com/compute/redist/jp/v502/pytorch/torch-1.13.0a0+d0d6b1f2.nv22.10-cp38-cp38-linux_aarch64.whl
+pip install torch-1.13.0a0+d0d6b1f2.nv22.10-cp38-cp38-linux_aarch64.whl
+
+```
+5. Build & install torchaudio from source using
+```
+conda install cmake ninja
+git clone https://github.com/pytorch/audio
+cd audio
+BUILD_SOX=1 python setup.py develop
+```
+6. OR install from here: [haven't tried/validated yet]
+```
+wget https://download.pytorch.org/whl/torchaudio/torchaudio-0.13.0-cp38-cp38-manylinux2014_aarch64.whl
+pip install torchaudio-0.13.0-cp38-cp38-manylinux2014_aarch64.whl
+``` 
+
+   
 ### Misc
 1. udevadm info /dev/mmcblk1p1 --> is a kernel level tool that polls for newly connected devices
 2. /etc/udev/rules.d/ or /usr/local/sd or /usr/lib/udev/rules.d or /lib/udev/rules.d is where UFS(sdcard) connection rules are specified. This takes precedence over fstab
