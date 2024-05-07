@@ -4,10 +4,14 @@ import onnxruntime as ort
 # import sounddevice as sd
 import soundfile as sf
 import numpy as np
+import time
 
 
-ort_sess = ort.InferenceSession('./hifigan_mac.onnx',providers=['CUDAExecutionProvider'])
+ort_sess = ort.InferenceSession('./hifigan_mac.onnx',providers=[("CUDAExecutionProvider",{"cudnn_conv_algo_search":"DEFAULT"})])
 
+device = "cuda" if torch.cuda.is_available() else "cpu"
+#device = "cpu"
+print("Device is",device)
 
 #Get mels and convert to a model readable format
 df = pd.read_csv("./Hindi_Mels_1")
@@ -25,12 +29,14 @@ new_shape = (1, my_tensor.size(0), my_tensor.size(1))
 my_3d_tensor = my_tensor.view(new_shape)
 
 x = my_3d_tensor.float()
-x = x.to('cpu')
+x = x.to('cpu') #copy tensor to cpu first. run command copies to cuda
+
+start = time.time()
 
 outputs = ort_sess.run(None, {'input': x.numpy()})
-
 data = outputs[0][0][0]
 
+print("Model runtime is",time.time()-start)
 
 sample_rate = 48000
 
