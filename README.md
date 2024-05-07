@@ -248,6 +248,20 @@ conda env create -f env_reqs.yml
 conda activate tts-reqs
 ```
 7. Inference code should now work
+ 
+## Take 5
+1. Now, cuda, cudnn, conda(in sdcard) are already installed. Now we're creating a conda environment for fastspeech HS.
+2. Fo a specific location `conda create --prefix path/to/location/<env_name>`
+3. `conda install python=3.8 pip`
+4. `pip install /path/to/torch-1.13.0a0+d0d6b1f2.nv22.10-cp38-cp38-linux_aarch64.whl`
+5. Build & install torchaudio from source
+```
+conda install cmake ninja
+git clone https://github.com/pytorch/audio
+cd audio
+BUILD_SOX=1 python setup.py develop
+```
+6. `conda env update -f <env_name>.yml`
    
 ### Misc
 1. udevadm info /dev/mmcblk1p1 --> is a kernel level tool that polls for newly connected devices
