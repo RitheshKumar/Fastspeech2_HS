@@ -1,0 +1,24 @@
+name: tts-reqs
+channels:
+  - defaults
+dependencies:
+  - python=3.8
+  - pip
+  - pip:
+    - espnet==202209 # sudo apt-get install libhdf5-dev for this
+    - espnet-tts-frontend==0.0.3                                                                 
+    - Flask                                                                                  
+    - g2p_en   
+    - indic-num2words                                                                              
+    - indic_unified_parser                                                                   
+    - librosa                                                                                
+    - nltk                                                                                   
+    - numpy                                                                                  
+    - openpyxl                                                                               
+    - pandas                                                                                 
+    - PyYAML                                                                                 
+    - Requests                                                                               
+    - scipy                                                                                  
+    - torch==1.13.0a0+d0d6b1f2.nv22.10 #install the downloaded wheel first by activating py3.8 environment
+    - typeguard==2.13.3
+    - xlrd                                                                                   

@@ -1,0 +1,16 @@
+
+name: tts-xavi
+channels:
+  - defaults
+dependencies:
+  - python=3.8
+  - pip
+  - pip:
+    - torch==1.13.0a0+d0d6b1f2.nv22.10 #install the downloaded wheel first by activating py3.8 environment
+    - numpy==1.24.4
+    - espnet==202209 # sudo apt-get install libhdf5-dev for this
+    - espnet-tts-frontend==0.0.3
+    - indic-num2words                                                                              
+    - indic_unified_parser     
+    - typeguard==2.13.3
+
