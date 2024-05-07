@@ -226,7 +226,7 @@ source ~/.bashrc
 4. Now install torch
 ```
 # [Jetpack 5.0.2, Python 3.8, Torch 1.13.0]
-wget https://developer.download.nvidia.com/compute/redist/jp/v502/pytorch/torch-1.13.0a0+d0d6b1f2.nv22.10-cp38-cp38-linux_aarch64.whl
+wget https://download.pytorch.org/whl/torchaudio-0.13.0-cp38-cp38-manylinux2014_aarch64.whl
 pip install torch-1.13.0a0+d0d6b1f2.nv22.10-cp38-cp38-linux_aarch64.whl
 
 ```
@@ -237,12 +237,17 @@ git clone https://github.com/pytorch/audio
 cd audio
 BUILD_SOX=1 python setup.py develop
 ```
-6. OR install from here: [haven't tried/validated yet]
+6. Create & activate either one of the two conda environments
 ```
-wget https://download.pytorch.org/whl/torchaudio/torchaudio-0.13.0-cp38-cp38-manylinux2014_aarch64.whl
-pip install torchaudio-0.13.0-cp38-cp38-manylinux2014_aarch64.whl
-``` 
-
+conda env create -f env_jets.yml
+conda activate tts-jets
+```
+[OR]
+```
+conda env create -f env_reqs.yml
+conda activate tts-reqs
+```
+7. Inference code should now work
    
 ### Misc
 1. udevadm info /dev/mmcblk1p1 --> is a kernel level tool that polls for newly connected devices
