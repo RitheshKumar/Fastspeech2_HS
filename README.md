@@ -271,6 +271,16 @@ BUILD_SOX=1 python setup.py develop
 5. The above command tells you if your mounted sd card has exec permissions. Shows as noexec if you don't. If there is exec permission, then nothing shows.So use the exec option in your fstab
 6. modinfo nvidia --> Useful for firmware versions 
 
+## Comments on Jetson GPU Profiling
+1. Nvidia offers NSight System which comes bundled with CUDA Toolkit
+2. Run the profiler from /opt/nvidia/nsight-systems/2022.3.3/bin/nsys-ui
+3. Launches GUI where we can see profiling data
+4. To profile `sudo nsys profile -o ../nsightProfile/myout -f true -w true /home/nvidia/sd/miniConda/envs/tts-jets/bin/python inference.py --gender male --language hindi --sample_text "अरे भगवान" --output_file this_file.wav --alpha 1`
+5. This generates a report file with path/name mentioned in -o option. This can be imported into the UI for analysis
+6. We can enable nsys profiler logging by renaming /opt/nvidia/nsight-systems/2022.3.3/target-linux-tegra-armv8/nvlog.config.template to nvlog.config
+7. This generates a log file for nsys in the folder that nsys command is called from.
+8. In theory the profiling should have worked. However just for our inference file, if I comment out `# from espnet2.bin.tts_inference import Text2Speech` it goes to the main function. It doesn't otherwise.
+9. This behaviour is undefined and I'm leaving it right there. Will continue if profiling is mandatory for our task.
 
 # Fastspeech2 Model using Hybrid Segmentation (HS)
 
